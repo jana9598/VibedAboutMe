@@ -1,5 +1,3 @@
-<web_code_canvas query="Enhance the layout and design of the bio section to make it visually engaging and appealing. Implement a modern interactive card design with highlight pills, subtle gradient accents, elegant typography with drop caps, and hover animations while maintaining the cohesive aesthetic." language="HTML">
-<file path="index.html">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,6 +16,7 @@
             --text-muted: #6e6b7b;
             --shadow-subtle: 0 4px 15px rgba(220, 190, 195, 0.15);
             --shadow-hover: 0 8px 25px rgba(220, 190, 195, 0.25);
+            --rainbow-gradient: linear-gradient(90deg, #ff94b7, #ffd166, #a8ded6, #b8c0ff, #ff94b7);
         }
 
         * {
@@ -26,14 +25,161 @@
             padding: 0;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.7;
             display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 0 40px 0;
+        }
+
+        /* Full Width Top Navigation Bar */
+        .top-navbar {
+            width: 100%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.05));
+        }
+
+        .nav-content {
+            width: 100%;
+            height: 52px;
+            background: var(--rainbow-gradient);
+            background-size: 200% 100%;
+            animation: gradientShift 12s ease infinite;
+            display: flex;
+            align-items: center;
             justify-content: center;
-            padding: 40px 20px;
+            padding: 0 20px;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .nav-items-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .nav-group {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        /* Cloud Nav Buttons with Bubbles All Around */
+        .cloud-btn {
+            position: relative;
+            text-decoration: none;
+            color: #2d2b32;
+            font-size: 0.88rem;
+            font-weight: 700;
+            background: #ffffff;
+            padding: 6px 16px;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+            filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.12));
+            transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        /* Outer Cloud Bubbles (Top, Bottom, Left, Right) */
+        .cloud-btn::before,
+        .cloud-btn::after {
+            content: '';
+            position: absolute;
+            background: #ffffff;
+            border-radius: 50%;
+            z-index: -1;
+            transition: all 0.25s ease;
+        }
+
+        /* Top & Bottom Bubbles */
+        .cloud-btn::before {
+            width: 22px;
+            height: 22px;
+            top: -6px;
+            left: 20%;
+            box-shadow: 
+                26px -2px 0 2px #ffffff,
+                12px 24px 0 1px #ffffff,
+                32px 22px 0 0px #ffffff;
+        }
+
+        /* Side & Secondary Bubbles */
+        .cloud-btn::after {
+            width: 18px;
+            height: 18px;
+            top: 3px;
+            left: -6px;
+            box-shadow: 
+                calc(100% + 5px) 2px 0 1px #ffffff,
+                8px -8px 0 0px #ffffff,
+                36px -7px 0 1px #ffffff;
+        }
+
+        .cloud-btn:hover {
+            transform: translateY(-2px) scale(1.05);
+            color: #ff5288;
+            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.18));
+        }
+
+        /* Center Nav Avatar Icon */
+        .nav-avatar-link {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .nav-avatar {
+            font-size: 1.8rem;
+            width: 44px;
+            height: 44px;
+            background: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+            border: 2px solid #ffffff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .nav-avatar:hover {
+            transform: scale(1.15) rotate(10deg);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+        }
+
+        /* SVG Wavy Bottom Line with uneven large waves */
+        .nav-wave-svg {
+            width: 100%;
+            height: 18px;
+            display: block;
+            margin-top: -1px;
         }
 
         /* Container limits the body width to create generous space on both sides */
@@ -45,6 +191,7 @@
             align-items: center;
             text-align: center;
             gap: 40px;
+            padding: 30px 20px 0 20px;
         }
 
         /* Header Styling */
@@ -53,24 +200,7 @@
             flex-direction: column;
             align-items: center;
             gap: 12px;
-        }
-
-        .avatar {
-            font-size: 3.2rem;
-            background: linear-gradient(135deg, #ffeef4 0%, #fff7f0 100%);
-            width: 90px;
-            height: 90px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            border: 2px solid var(--border-color);
-            box-shadow: var(--shadow-subtle);
-            transition: transform 0.3s ease;
-        }
-
-        .avatar:hover {
-            transform: scale(1.08) rotate(5deg);
+            margin-top: 10px;
         }
 
         h1 {
@@ -93,6 +223,7 @@
         /* Redesigned Bio Section */
         .bio-section {
             width: 100%;
+            scroll-margin-top: 80px;
         }
 
         .bio-card {
@@ -118,7 +249,7 @@
             left: 0;
             width: 100%;
             height: 4px;
-            background: linear-gradient(90deg, #ff94b7, #ffd166, #a8ded6);
+            background: var(--rainbow-gradient);
         }
 
         .bio-greeting {
@@ -217,6 +348,7 @@
             width: 100%;
             justify-content: center;
             align-items: stretch;
+            scroll-margin-top: 80px;
         }
 
         .interest-card {
@@ -261,6 +393,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            scroll-margin-top: 80px;
         }
 
         h2 {
@@ -380,7 +513,17 @@
         }
 
         /* Responsive adjustments for smaller screens */
-        @media (max-width: 550px) {
+        @media (max-width: 620px) {
+            .nav-items-wrapper {
+                gap: 12px;
+            }
+            .nav-group {
+                gap: 12px;
+            }
+            .cloud-btn {
+                font-size: 0.78rem;
+                padding: 4px 10px;
+            }
             .interests {
                 flex-direction: column;
             }
@@ -395,17 +538,54 @@
 </head>
 <body>
 
+    <!-- Full Width Top Navigation Bar -->
+    <nav class="top-navbar">
+        <div class="nav-content">
+            <div class="nav-items-wrapper">
+                <!-- Left Nav Items -->
+                <div class="nav-group">
+                    <a href="#bio" class="cloud-btn">Bio</a>
+                    <a href="#hobbies" class="cloud-btn">Hobbies</a>
+                </div>
+
+                <!-- Centered Emoji Icon -->
+                <a href="#" class="nav-avatar-link" title="Top">
+                    <div class="nav-avatar">🧚🏻‍♀️</div>
+                </a>
+
+                <!-- Right Nav Items -->
+                <div class="nav-group">
+                    <a href="#books" class="cloud-btn">Favorite Books</a>
+                    <a href="#recipes" class="cloud-btn">Recipes</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- SVG Uneven Wave Bottom Edge -->
+        <svg class="nav-wave-svg" viewBox="0 0 1200 30" preserveAspectRatio="none">
+            <defs>
+                <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#ff94b7" />
+                    <stop offset="25%" stop-color="#ffd166" />
+                    <stop offset="50%" stop-color="#a8ded6" />
+                    <stop offset="75%" stop-color="#b8c0ff" />
+                    <stop offset="100%" stop-color="#ff94b7" />
+                </linearGradient>
+            </defs>
+            <path fill="url(#waveGradient)" d="M0,0 L1200,0 L1200,12 C1110,28 1030,2 940,18 C850,30 770,8 680,24 C590,32 500,6 410,20 C320,30 230,2 130,22 C60,28 20,10 0,14 Z"></path>
+        </svg>
+    </nav>
+
     <div class="container">
         
         <!-- Header -->
         <header>
-            <div class="avatar">🧚🏻‍♀️</div>
             <h1>Jana Pohlmann</h1>
             <p class="tagline">podcast enthusiast • kitchen fairy • book worm • photographing</p>
         </header>
 
         <!-- Bio -->
-        <section class="bio-section">
+        <section id="bio" class="bio-section">
             <div class="bio-card">
                 <div class="bio-greeting">
                     <h2>Hello <span class="wave-emoji">👋</span> I'm Jana</h2>
@@ -435,7 +615,7 @@
         </section>
 
         <!-- Interests / Hobbies -->
-        <section class="interests">
+        <section id="hobbies" class="interests">
             <div class="interest-card">
                 <div class="icon">🎧</div>
                 <h3>Podcast Enthusiast</h3>
@@ -456,7 +636,7 @@
         </section>
 
         <!-- Favourite Books -->
-        <section class="books">
+        <section id="books" class="books">
             <h2>Favourite Books</h2>
             <div class="books-grid">
                 
@@ -506,7 +686,7 @@
         </section>
 
         <!-- Favourite Recipes -->
-        <section class="recipes">
+        <section id="recipes" class="recipes">
             <h2>Favourite Recipes</h2>
             <div class="items-list">
                 
@@ -546,5 +726,3 @@
 
 </body>
 </html>
-</file>
-</web_code_canvas>
