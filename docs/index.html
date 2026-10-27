@@ -174,12 +174,20 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
         }
 
-        /* SVG Wavy Bottom Line with uneven large waves */
-        .nav-wave-svg {
+        /* SVG Container mit animiertem Gradient-Hintergrund */
+        .wave-container {
             width: 100%;
             height: 18px;
-            display: block;
             margin-top: -1px;
+            background: var(--rainbow-gradient);
+            background-size: 200% 100%;
+            animation: gradientShift 12s ease infinite;
+        }
+
+        .nav-wave-svg {
+            width: 100%;
+            height: 100%;
+            display: block;
         }
 
         /* Container limits the body width to create generous space on both sides */
@@ -561,19 +569,13 @@
             </div>
         </div>
 
-        <!-- SVG Uneven Wave Bottom Edge -->
-        <svg class="nav-wave-svg" viewBox="0 0 1200 30" preserveAspectRatio="none">
-            <defs>
-                <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stop-color="#ff94b7" />
-                    <stop offset="25%" stop-color="#ffd166" />
-                    <stop offset="50%" stop-color="#a8ded6" />
-                    <stop offset="75%" stop-color="#b8c0ff" />
-                    <stop offset="100%" stop-color="#ff94b7" />
-                </linearGradient>
-            </defs>
-            <path fill="url(#waveGradient)" d="M0,0 L1200,0 L1200,12 C1110,28 1030,2 940,18 C850,30 770,8 680,24 C590,32 500,6 410,20 C320,30 230,2 130,22 C60,28 20,10 0,14 Z"></path>
-        </svg>
+        <!-- SVG Wave Container with shared animated background -->
+        <div class="wave-container">
+            <svg class="nav-wave-svg" viewBox="0 0 1200 30" preserveAspectRatio="none">
+                <!-- Outer cutout mask filled with body background color -->
+                <path fill="#faf8f5" d="M0,30 L1200,30 L1200,12 C1110,28 1030,2 940,18 C850,30 770,8 680,24 C590,32 500,6 410,20 C320,30 230,2 130,22 C60,28 20,10 0,14 Z"></path>
+            </svg>
+        </div>
     </nav>
 
     <div class="container">
