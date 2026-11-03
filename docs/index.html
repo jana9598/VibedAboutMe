@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jana Pohlmann</title>
+    <!-- Google Font for handwritten cloud button text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --primary-color: #2d2b32;
@@ -85,65 +90,54 @@
             gap: 30px;
         }
 
-        /* Cloud Nav Buttons with Bubbles All Around */
-        .cloud-btn {
+        /* SVG Cloud Navigation Item Container */
+        .cloud-link {
             position: relative;
-            text-decoration: none;
-            color: #2d2b32;
-            font-size: 0.88rem;
-            font-weight: 700;
-            background: #ffffff;
-            padding: 6px 16px;
-            border-radius: 20px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            white-space: nowrap;
-            filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.12));
-            transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+            transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
-            z-index: 1;
         }
 
-        /* Outer Cloud Bubbles (Top, Bottom, Left, Right) */
-        .cloud-btn::before,
-        .cloud-btn::after {
-            content: '';
+        .cloud-link:hover {
+            transform: translateY(-2px) scale(1.06);
+        }
+
+        /* Pure SVG Cloud background shape */
+        .cloud-svg-bg {
+            height: 38px;
+            width: auto;
+            min-width: 95px;
+            filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.1));
+            transition: filter 0.25s ease;
+        }
+
+        .cloud-link:hover .cloud-svg-bg {
+            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.16));
+        }
+
+        .cloud-svg-bg path {
+            fill: #ffffff;
+        }
+
+        /* Handwritten, smaller, lighter font over the Cloud */
+        .cloud-text {
             position: absolute;
-            background: #ffffff;
-            border-radius: 50%;
-            z-index: -1;
-            transition: all 0.25s ease;
+            font-family: 'Caveat', 'Comic Sans MS', cursive, sans-serif;
+            font-size: 1.05rem;
+            font-weight: 400;
+            color: #4a4552; /* Soft charcoal - not deep black */
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+            pointer-events: none;
+            transition: color 0.2s ease;
+            transform: translateY(-1px);
         }
 
-        /* Top & Bottom Bubbles */
-        .cloud-btn::before {
-            width: 22px;
-            height: 22px;
-            top: -6px;
-            left: 20%;
-            box-shadow: 
-                26px -2px 0 2px #ffffff,
-                12px 24px 0 1px #ffffff,
-                32px 22px 0 0px #ffffff;
-        }
-
-        /* Side & Secondary Bubbles */
-        .cloud-btn::after {
-            width: 18px;
-            height: 18px;
-            top: 3px;
-            left: -6px;
-            box-shadow: 
-                calc(100% + 5px) 2px 0 1px #ffffff,
-                8px -8px 0 0px #ffffff,
-                36px -7px 0 1px #ffffff;
-        }
-
-        .cloud-btn:hover {
-            transform: translateY(-2px) scale(1.05);
-            color: #ff5288;
-            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.18));
+        .cloud-link:hover .cloud-text {
+            color: #d64978;
         }
 
         /* Center Nav Avatar Icon */
@@ -174,7 +168,7 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
         }
 
-        /* SVG Container mit animiertem Gradient-Hintergrund */
+        /* SVG Wave Container mit animiertem Gradient-Hintergrund */
         .wave-container {
             width: 100%;
             height: 18px;
@@ -190,7 +184,7 @@
             display: block;
         }
 
-        /* Container limits the body width to create generous space on both sides */
+        /* Container limits the body width */
         .container {
             width: 100%;
             max-width: 680px;
@@ -228,7 +222,7 @@
             border: 1px solid var(--border-color);
         }
 
-        /* Redesigned Bio Section */
+        /* Bio Section */
         .bio-section {
             width: 100%;
             scroll-margin-top: 80px;
@@ -304,11 +298,6 @@
             position: relative;
         }
 
-        .bio-paragraph strong {
-            color: var(--primary-color);
-            font-weight: 600;
-        }
-
         .highlight-pill {
             display: inline-flex;
             align-items: center;
@@ -348,7 +337,7 @@
             transform: translateY(-2px);
         }
 
-        /* Interests / Hobbies - Arranged horizontally in equal sizes */
+        /* Interests / Hobbies */
         .interests {
             display: flex;
             flex-direction: row;
@@ -412,7 +401,7 @@
             display: inline-block;
         }
 
-        /* Books Section - 2 Columns x 3 Rows Grid */
+        /* Books Section */
         .books-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -467,7 +456,7 @@
             margin-top: 4px;
         }
 
-        /* Recipes Section - Stacked & Centered */
+        /* Recipes Section */
         .items-list {
             display: flex;
             flex-direction: column;
@@ -520,17 +509,20 @@
             width: 100%;
         }
 
-        /* Responsive adjustments for smaller screens */
+        /* Responsive adjustments */
         @media (max-width: 620px) {
             .nav-items-wrapper {
-                gap: 12px;
+                gap: 10px;
             }
             .nav-group {
-                gap: 12px;
+                gap: 10px;
             }
-            .cloud-btn {
-                font-size: 0.78rem;
-                padding: 4px 10px;
+            .cloud-svg-bg {
+                height: 32px;
+                min-width: 80px;
+            }
+            .cloud-text {
+                font-size: 0.9rem;
             }
             .interests {
                 flex-direction: column;
@@ -550,29 +542,52 @@
     <nav class="top-navbar">
         <div class="nav-content">
             <div class="nav-items-wrapper">
+                
                 <!-- Left Nav Items -->
                 <div class="nav-group">
-                    <a href="#bio" class="cloud-btn">Bio</a>
-                    <a href="#hobbies" class="cloud-btn">Hobbies</a>
+                    <a href="#bio" class="cloud-link">
+                        <svg class="cloud-svg-bg" viewBox="0 0 120 50" preserveAspectRatio="none">
+                            <path d="M 22 42 Q 10 42 10 32 Q 10 24 18 20 Q 18 10 30 10 Q 38 10 44 15 Q 52 6 66 8 Q 78 10 82 20 Q 92 18 100 24 Q 108 30 104 38 Q 102 42 92 42 Z"/>
+                        </svg>
+                        <span class="cloud-text">Bio</span>
+                    </a>
+
+                    <a href="#hobbies" class="cloud-link">
+                        <svg class="cloud-svg-bg" viewBox="0 0 120 50" preserveAspectRatio="none">
+                            <path d="M 22 42 Q 10 42 10 32 Q 10 24 18 20 Q 18 10 30 10 Q 38 10 44 15 Q 52 6 66 8 Q 78 10 82 20 Q 92 18 100 24 Q 108 30 104 38 Q 102 42 92 42 Z"/>
+                        </svg>
+                        <span class="cloud-text">Hobbies</span>
+                    </a>
                 </div>
 
-                <!-- Centered Emoji Icon -->
+                <!-- Centered Emoji Avatar Icon -->
                 <a href="#" class="nav-avatar-link" title="Top">
                     <div class="nav-avatar">🧚🏻‍♀️</div>
                 </a>
 
                 <!-- Right Nav Items -->
                 <div class="nav-group">
-                    <a href="#books" class="cloud-btn">Favorite Books</a>
-                    <a href="#recipes" class="cloud-btn">Recipes</a>
+                    <a href="#books" class="cloud-link">
+                        <svg class="cloud-svg-bg" viewBox="0 0 135 50" preserveAspectRatio="none">
+                            <path d="M 20 42 Q 8 42 8 32 Q 8 24 16 20 Q 16 10 28 10 Q 38 10 45 15 Q 55 5 72 7 Q 88 9 93 20 Q 105 17 115 24 Q 125 30 120 38 Q 118 42 106 42 Z"/>
+                        </svg>
+                        <span class="cloud-text">Favorite Books</span>
+                    </a>
+
+                    <a href="#recipes" class="cloud-link">
+                        <svg class="cloud-svg-bg" viewBox="0 0 120 50" preserveAspectRatio="none">
+                            <path d="M 22 42 Q 10 42 10 32 Q 10 24 18 20 Q 18 10 30 10 Q 38 10 44 15 Q 52 6 66 8 Q 78 10 82 20 Q 92 18 100 24 Q 108 30 104 38 Q 102 42 92 42 Z"/>
+                        </svg>
+                        <span class="cloud-text">Recipes</span>
+                    </a>
                 </div>
+
             </div>
         </div>
 
-        <!-- SVG Wave Container with shared animated background -->
+        <!-- SVG Wave Container with animated gradient cutout -->
         <div class="wave-container">
             <svg class="nav-wave-svg" viewBox="0 0 1200 30" preserveAspectRatio="none">
-                <!-- Outer cutout mask filled with body background color -->
                 <path fill="#faf8f5" d="M0,30 L1200,30 L1200,12 C1110,28 1030,2 940,18 C850,30 770,8 680,24 C590,32 500,6 410,20 C320,30 230,2 130,22 C60,28 20,10 0,14 Z"></path>
             </svg>
         </div>
