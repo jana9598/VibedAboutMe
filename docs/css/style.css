@@ -106,26 +106,30 @@ h2 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    filter: drop-shadow(var(--shadow-navbar));
+    background-image: var(--rainbow-gradient);
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: 100% 4px;
+    padding-top: 4px;
 }
 
 .nav-content {
-    width: 100%;
-    height: 64px;
-    background: var(--rainbow-gradient);
-    background-size: 100% 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: var(--space-lg);
-    padding: var(--space-sm) var(--space-md) var(--space-sm) var(--space-md);
+    margin-top: var(--space-sm);
+    padding: 6px 10px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-pill);
+    box-shadow: var(--shadow-subtle);
 }
 
 .nav-items {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: var(--space-lg);
+    gap: var(--space-md);
     list-style: none;
 }
 
@@ -136,33 +140,36 @@ h2 {
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: transform var(--transition-fast), filter var(--transition-fast);
     cursor: pointer;
 }
 
+.cloud-link.is-active .cloud-svg-bg path {
+    fill: var(--accent-soft);
+}
+
+.cloud-link.is-active .cloud-text {
+    color: var(--accent-strong);
+    font-weight: 500;
+}
+
 .cloud-link:hover {
-    transform: translateY(-2px) scale(1.06);
+    transform: translateY(-2px);
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
 }
 
 /* Pure SVG Cloud background shape */
 .cloud-svg-bg {
-    height: 38px;
+    height: 48px;
     width: auto;
-    min-width: 95px;
-    filter: drop-shadow(var(--shadow-cloud));
+    min-width: 120px;
     transition: filter var(--transition-fast);
-}
-
-.cloud-link:hover .cloud-svg-bg {
-    filter: drop-shadow(var(--shadow-cloud-hover));
 }
 
 .cloud-svg-bg path {
     fill: var(--card-bg);
-}
-
-#cloud path {
-    fill: var(--card-bg);
+    stroke-width: 3;
+    stroke-linejoin: round;
 }
 
 /* Clean font label over the Cloud */
@@ -183,33 +190,6 @@ h2 {
     color: var(--accent-hover);
 }
 
-/* Center Nav Avatar Icon */
-.nav-avatar-link {
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 2;
-}
-
-.nav-avatar {
-    font-size: 1.8rem;
-    width: 44px;
-    height: 44px;
-    background: var(--card-bg);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: var(--shadow-nav);
-    border: 2px solid var(--card-bg);
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-.nav-avatar:hover {
-    transform: scale(1.15) rotate(10deg);
-    box-shadow: var(--shadow-nav-hover);
-}
 
 /* Container limits the body width */
 .container {
@@ -486,8 +466,8 @@ footer {
     }
 
     .cloud-svg-bg {
-        height: 32px;
-        min-width: 80px;
+        height: 40px;
+        min-width: 100px;
     }
 
     .books-grid {
