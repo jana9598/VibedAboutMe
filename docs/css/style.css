@@ -161,6 +161,10 @@ h2 {
     fill: var(--card-bg);
 }
 
+#cloud path {
+    fill: var(--card-bg);
+}
+
 /* Clean font label over the Cloud */
 .cloud-text {
     position: absolute;
