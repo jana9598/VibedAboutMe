@@ -543,6 +543,10 @@ footer {
     .bio-card {
         padding: 24px 20px;
     }
+
+    .library-teasers {
+        flex-direction: column;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -683,6 +687,57 @@ footer {
 
 .library-empty-desc {
     font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+/* From the library teaser (index page) */
+.library-section {
+    scroll-margin-top: 80px;
+}
+
+.library-teasers {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-md);
+    width: 100%;
+    justify-content: center;
+}
+
+.teaser-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 24px 20px;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-subtle);
+    background: var(--card-bg);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.teaser-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+}
+
+.teaser-icon {
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+.teaser-card h3 {
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--primary-color);
+    margin-bottom: 4px;
+}
+
+.teaser-card p {
+    font-size: 0.9rem;
     color: var(--text-muted);
 }
 
