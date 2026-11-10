@@ -38,20 +38,11 @@
 
             <ul class="nav-items">
                 <li>
-                    <a href="#books" class="cloud-link">
-                        <svg class="cloud-svg-bg" viewBox="0 0 135 50" preserveAspectRatio="none" aria-hidden="true">
-                            <path d="M 20 42 Q 8 42 8 32 Q 8 24 16 20 Q 16 10 28 10 Q 38 10 45 15 Q 55 5 72 7 Q 88 9 93 20 Q 105 17 115 24 Q 125 30 120 38 Q 118 42 106 42 Z"/>
-                        </svg>
-                        <span class="cloud-text">Favourite Books</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#recipes" class="cloud-link">
+                    <a href="library.html" class="cloud-link" aria-current="page">
                         <svg class="cloud-svg-bg" viewBox="0 0 120 50" preserveAspectRatio="none" aria-hidden="true">
-                            <path d="M 22 42 Q 10 42 10 32 Q 10 24 18 20 Q 18 10 30 10 Q 38 10 44 15 Q 52 6 66 8 Q 78 10 82 20 Q 92 18 100 24 Q 108 30 104 38 Q 102 42 92 42 Z"/>
+                            <use href="#cloud"></use>
                         </svg>
-                        <span class="cloud-text">Recipes</span>
+                        <span class="cloud-text">Library</span>
                     </a>
                 </li>
             </ul>
@@ -120,82 +111,21 @@
             </ul>
         </section>
 
-        <!-- Favourite Books -->
-        <section id="books" class="books-section">
-            <h2>Favourite Books</h2>
-            <ul class="books-grid">
-                <li class="book-card card">
-                    <span class="heart-icon" aria-hidden="true">♡</span>
-                    <h3 class="book-title">Project Hail Mary</h3>
-                    <span class="book-author">Andy Weir</span>
-                    <span class="rating" aria-label="Rating: 4.5 out of 5">★★★★<span class="half-star" aria-hidden="true">★</span> (4.5)</span>
-                </li>
-
-                <li class="book-card card">
-                    <span class="heart-icon" aria-hidden="true">♡</span>
-                    <h3 class="book-title">The Long Way to a Small Angry Planet</h3>
-                    <span class="book-author">Becky Chambers</span>
-                    <span class="rating" aria-label="Rating: 4 out of 5">★★★★ (4.0)</span>
-                </li>
-
-                <li class="book-card card">
-                    <span class="heart-icon" aria-hidden="true">♡</span>
-                    <h3 class="book-title">The Safekeep</h3>
-                    <span class="book-author">Yael van der Wouden</span>
-                    <span class="rating" aria-label="Rating: 4.5 out of 5">★★★★<span class="half-star" aria-hidden="true">★</span> (4.5)</span>
-                </li>
-
-                <li class="book-card card">
-                    <span class="heart-icon" aria-hidden="true">♡</span>
-                    <h3 class="book-title">Klara and the Sun</h3>
-                    <span class="book-author">Kazuo Ishiguro</span>
-                    <span class="rating" aria-label="Rating: 4 out of 5">★★★★ (4.0)</span>
-                </li>
-
-                <li class="book-card card">
-                    <span class="heart-icon" aria-hidden="true">♡</span>
-                    <h3 class="book-title">Prima Facie</h3>
-                    <span class="book-author">Suzie Miller</span>
-                    <span class="rating" aria-label="Rating: 5 out of 5">★★★★★ (5.0)</span>
-                </li>
-
-                <li class="book-card card">
-                    <span class="heart-icon" aria-hidden="true">♡</span>
-                    <h3 class="book-title">Yesteryear</h3>
-                    <span class="book-author">Carolee Dean</span>
-                    <span class="rating" aria-label="Rating: 4 out of 5">★★★★ (4.0)</span>
-                </li>
-            </ul>
-        </section>
-
-        <!-- Favourite Recipes -->
-        <section id="recipes" class="recipes-section">
-            <h2>Favourite Recipes</h2>
-            <ul class="items-list">
-                <li class="recipe-card card">
-                    <div class="recipe-icon" aria-hidden="true">🍋</div>
-                    <h3 class="recipe-title">Lemon Drizzle Cake</h3>
-                    <p class="recipe-desc">Bright, soft, and impossible to stop eating.</p>
-                </li>
-
-                <li class="recipe-card card">
-                    <div class="recipe-icon" aria-hidden="true">🍝</div>
-                    <h3 class="recipe-title">Creamy Tomato Pasta</h3>
-                    <p class="recipe-desc">A reliable comfort-food classic for busy evenings.</p>
-                </li>
-
-                <li class="recipe-card card">
-                    <div class="recipe-icon" aria-hidden="true">🥣</div>
-                    <h3 class="recipe-title">Pumpkin Soup</h3>
-                    <p class="recipe-desc">Warm, cozy, and perfect with fresh bread.</p>
-                </li>
-
-                <li class="recipe-card card">
-                    <div class="recipe-icon" aria-hidden="true">🍪</div>
-                    <h3 class="recipe-title">Chocolate Chip Cookies</h3>
-                    <p class="recipe-desc">Crispy edges, soft centre, best enjoyed warm.</p>
-                </li>
-            </ul>
+        <!-- From the library section -->
+        <section id="library" class="library-section">
+            <h2>From the library</h2>
+            <div class="library-teasers">
+                <a href="library.html#books" class="teaser-card">
+                    <div class="teaser-icon">📖</div>
+                    <h3>Favourite Books</h3>
+                    <p>6 reads</p>
+                </a>
+                <a href="library.html#recipes" class="teaser-card">
+                    <div class="teaser-icon">🍋</div>
+                    <h3>Favourite Recipes</h3>
+                    <p>4 favourites</p>
+                </a>
+            </div>
         </section>
 
     </main>

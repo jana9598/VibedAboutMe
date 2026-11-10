@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Library | Jana Pohlmann</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+
+    <!-- Full Width Top Navigation Bar -->
+    <nav class="top-navbar">
+        <div class="nav-content">
+            <ul class="nav-items">
+                <li>
+                    <a href="index.html#bio" class="cloud-link">
+                        <svg class="cloud-svg-bg" viewBox="0 0 120 50" preserveAspectRatio="none" aria-hidden="true">
+                            <use href="#cloud"></use>
+                        </svg>
+                        <span class="cloud-text">Bio</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="index.html#hobbies" class="cloud-link">
+                        <svg class="cloud-svg-bg" viewBox="0 0 120 50" preserveAspectRatio="none" aria-hidden="true">
+                            <use href="#cloud"></use>
+                        </svg>
+                        <span class="cloud-text">Hobbies</span>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Centered Avatar Icon -->
+            <a href="#" class="nav-avatar-link" aria-label="Jana Pohlmann - back to top">
+                <span class="nav-avatar" aria-hidden="true">✨</span>
+            </a>
+
+            <ul class="nav-items">
+                <li>
+                    <a href="library.html" class="cloud-link is-active" aria-current="page">
+                        <svg class="cloud-svg-bg" viewBox="0 0 120 50" preserveAspectRatio="none" aria-hidden="true">
+                            <use href="#cloud"></use>
+                        </svg>
+                        <span class="cloud-text">Library</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        
+        <!-- Header -->
+        <header>
+            <h1>The Library</h1>
+            <p class="tagline">books · films · music · recipes</p>
+        </header>
+
+        <!-- Cloud Tabs -->
+        <div class="cloud-tabs" role="tablist" aria-label="Library sections">
+            <button role="tab" id="tab-books" aria-controls="panel-books" aria-selected="true">📖 Books</button>
+            <button role="tab" id="tab-movies" aria-controls="panel-movies" aria-selected="false">🎬 Movies</button>
+            <button role="tab" id="tab-music" aria-controls="panel-music" aria-selected="false">🎵 Music</button>
+            <button role="tab" id="tab-recipes" aria-controls="panel-recipes" aria-selected="false">🍋 Recipes</button>
+        </div>
+
+        <!-- Books Panel -->
+        <section id="panel-books" role="tabpanel" aria-labelledby="tab-books">
+            <h2>📖 Books</h2>
+            <ul class="library-grid">
+                <li class="library-card card">
+                    <div class="library-cover" aria-hidden="true">📖</div>
+                    <h3 class="library-title">Project Hail Mary</h3>
+                    <span class="library-creator">Andy Weir</span>
+                    <span class="library-rating" aria-label="Rating: 4.5 out of 5">★★★★<span class="half-star" aria-hidden="true">★</span> (4.5)</span>
+                </li>
+
+                <li class="library-card card">
+                    <div class="library-cover" aria-hidden="true">📖</div>
+                    <h3 class="library-title">The Long Way to a Small Angry Planet</h3>
+                    <span class="library-creator">Becky Chambers</span>
+                    <span class="library-rating" aria-label="Rating: 4 out of 5">★★★★ (4.0)</span>
+                </li>
+
+                <li class="library-card card">
+                    <div class="library-cover" aria-hidden="true">📖</div>
+                    <h3 class="library-title">The Safekeep</h3>
+                    <span class="library-creator">Yael van der Wouden</span>
+                    <span class="library-rating" aria-label="Rating: 4.5 out of 5">★★★★<span class="half-star" aria-hidden="true">★</span> (4.5)</span>
+                </li>
+
+                <li class="library-card card">
+                    <div class="library-cover" aria-hidden="true">📖</div>
+                    <h3 class="library-title">Klara and the Sun</h3>
+                    <span class="library-creator">Kazuo Ishiguro</span>
+                    <span class="library-rating" aria-label="Rating: 4 out of 5">★★★★ (4.0)</span>
+                </li>
+
+                <li class="library-card card">
+                    <div class="library-cover" aria-hidden="true">📖</div>
+                    <h3 class="library-title">Prima Facie</h3>
+                    <span class="library-creator">Suzie Miller</span>
+                    <span class="library-rating" aria-label="Rating: 5 out of 5">★★★★★ (5.0)</span>
+                </li>
+
+                <li class="library-card card">
+                    <div class="library-cover" aria-hidden="true">📖</div>
+                    <h3 class="library-title">Yesteryear</h3>
+                    <span class="library-creator">Carolee Dean</span>
+                    <span class="library-rating" aria-label="Rating: 4 out of 5">★★★★ (4.0)</span>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Movies Panel (empty state) -->
+        <section id="panel-movies" role="tabpanel" aria-labelledby="tab-movies">
+            <h2>🎬 Movies</h2>
+            <div class="library-empty">
+                <div class="library-empty-icon" aria-hidden="true">🎬</div>
+                <p class="library-empty-title">Nothing on this shelf yet</p>
+                <p class="library-empty-desc">The watchlist is still growing.</p>
+            </div>
+        </section>
+
+        <!-- Music Panel -->
+        <section id="panel-music" role="tabpanel" aria-labelledby="tab-music">
+            <h2>🎵 Music</h2>
+            <div class="library-empty">
+                <div class="library-empty-icon" aria-hidden="true">🎵</div>
+                <p class="library-empty-title">Nothing on this shelf yet</p>
+                <p class="library-empty-desc">The playlist is still growing.</p>
+            </div>
+        </section>
+
+        <!-- Recipes Panel -->
+        <section id="panel-recipes" role="tabpanel" aria-labelledby="tab-recipes">
+            <h2>🍋 Recipes</h2>
+            <ul class="library-grid">
+                <li class="library-card card">
+                    <div class="library-cover" aria-hidden="true">🍋</div>
+                    <h3 class="library-title">Lemon Drizzle Cake</h3>
+                    <p class="library-desc">Bright, soft, and impossible to stop eating.</p>
+                </li>
+
+                <li class="library-card card">
+                    <div class="library-cover" aria-hidden="true">🍝</div>
+                    <h3 class="library-title">Creamy Tomato Pasta</h3>
+                    <p class="library-desc">A reliable comfort-food classic for busy evenings.</p>
+                </li>
+
+                <li class="library-card card">
+                    <div class="library-cover" aria-hidden="true">🥣</div>
+                    <h3 class="library-title">Pumpkin Soup</h3>
+                    <p class="library-desc">Warm, cozy, and perfect with fresh bread.</p>
+                </li>
+
+                <li class="library-card card">
+                    <div class="library-cover" aria-hidden="true">🍪</div>
+                    <h3 class="library-title">Chocolate Chip Cookies</h3>
+                    <p class="library-desc">Crispy edges, soft centre, best enjoyed warm.</p>
+                </li>
+            </ul>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>For inquiry 💌, please send a postcard 📮.</p>
+    </footer>
+
+    <!-- Cloud SVG Symbol (defined once, reused via <use>) -->
+    <svg style="display: none;" aria-hidden="true">
+        <symbol id="cloud" viewBox="0 0 120 50" preserveAspectRatio="none">
+            <path d="M 22 42 Q 10 42 10 32 Q 10 24 18 20 Q 18 10 30 10 Q 38 10 44 15 Q 52 6 66 8 Q 78 10 82 20 Q 92 18 100 24 Q 108 30 104 38 Q 102 42 92 42 Z"/>
+        </symbol>
+    </svg>
+
+</body>
+</html>
