@@ -372,52 +372,6 @@ footer {
     transform: translateY(-2px);
 }
 
-/* Interests / Hobbies */
-
-.interests-section {
-    scroll-margin-top: 80px;
-}
-
-.interests {
-    display: flex;
-    flex-direction: row;
-    gap: var(--space-md);
-    width: 100%;
-    justify-content: center;
-    align-items: stretch;
-}
-
-.interest-card {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 22px 16px;
-}
-
-.interest-card:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-hover);
-}
-
-.interest-card .icon {
-    font-size: 2rem;
-    margin-bottom: 10px;
-}
-
-.interest-card h3 {
-    color: var(--primary-color);
-    margin-bottom: 6px;
-    font-size: 1rem;
-}
-
-.interest-card p {
-    font-size: 0.88rem;
-    color: var(--text-muted);
-    line-height: 1.45;
-}
-
 /* Favourite Books */
 
 .books-section {
@@ -534,10 +488,6 @@ footer {
     .cloud-svg-bg {
         height: 32px;
         min-width: 80px;
-    }
-
-    .interests {
-        flex-direction: column;
     }
 
     .books-grid {
