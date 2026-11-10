@@ -24,6 +24,10 @@ A horizontally scrollable row of slightly tilted **polaroid cards**, each with a
 - `.polaroid-photo`: 4:3 placeholder area with a soft accent background and centred emoji; easy to swap for an image.
 - Mobile (≤620px): smaller cards, still horizontally scrollable (no layout break).
 
+## Interaction
+
+- On hover, only the photo flips horizontally to reveal a second picture (CSS 3D flip on `.polaroid-photo`), not the whole polaroid. Requires a front/back face inside `.polaroid-photo` (e.g. two layers) and `perspective` + `transform: rotateY(180deg)` on hover, with `backface-visibility: hidden`.
+
 ## Accessibility
 
 - Semantic `ul`/`li`, `aria-label` on the strip, `aria-hidden` on decorative photo placeholders, visible focus on scroll container.
@@ -34,3 +38,9 @@ A horizontally scrollable row of slightly tilted **polaroid cards**, each with a
 - `docs/css/style.css` — add travel-strip / polaroid styles + responsive tweak.
 
 No JS needed, so `docs/js/main.js` stays untouched and the page still works when opened directly.
+
+## Execution plan (3 steps)
+
+1. **HTML (`docs/index.html`)**: Insert the `#travels` section above the library teaser with polaroid cards; each `.polaroid-photo` contains a front and back face (two layers) for the flip, plus caption (place/date/note). Add `TODO` placeholders.
+2. **CSS (`docs/css/style.css`)**: Add travel-strip/polaroid layout, alternating rotations, and a 3D flip on hover that rotates only `.polaroid-photo` (front/back faces with `backface-visibility: hidden`); add responsive tweaks for ≤620px.
+3. **Test**: Open `docs/index.html` directly; verify horizontal scroll + snap, flip on photo hover, and layout at 360/768/1280 px; check keyboard focus and no console errors.
