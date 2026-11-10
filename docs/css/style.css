@@ -106,14 +106,33 @@ h2 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-top: 4px;
+    transition: padding-top 0.3s ease;
+}
+
+.top-navbar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
     background-image: var(--rainbow-gradient);
     background-repeat: no-repeat;
-    background-position: top;
     background-size: 100% 4px;
-    padding-top: 4px;
+    transition: opacity 0.3s ease;
+}
+
+.top-navbar.is-collapsed {
+    padding-top: 0;
+}
+
+.top-navbar.is-collapsed::before {
+    opacity: 0;
 }
 
 .nav-content {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -123,6 +142,42 @@ h2 {
     border: 1px solid var(--border-color);
     border-radius: var(--radius-pill);
     box-shadow: var(--shadow-subtle);
+    transition: padding 0.3s ease, margin-top 0.3s ease;
+}
+
+/* Rainbow line in the middle, shown when collapsed */
+.nav-content::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    right: 12px;
+    height: 4px;
+    border-radius: var(--radius-pill);
+    background: var(--rainbow-gradient);
+    transform: translateY(-50%) scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.nav-content.is-collapsed {
+    padding: 4px 20px;
+    margin-top: 2px;
+}
+
+.nav-content.is-collapsed::after {
+    transform: translateY(-50%) scaleX(1);
+}
+
+/* Hover / focus "pops" the bar back open */
+.nav-content.is-collapsed:hover,
+.nav-content.is-collapsed:focus-within {
+    padding: 6px 10px;
+    margin-top: var(--space-sm);
+}
+
+.nav-content.is-collapsed:hover::after,
+.nav-content.is-collapsed:focus-within::after {
+    transform: translateY(-50%) scaleX(0);
 }
 
 .nav-items {
@@ -163,7 +218,18 @@ h2 {
     height: 48px;
     width: auto;
     min-width: 120px;
-    transition: filter var(--transition-fast);
+    transition: height 0.3s ease, opacity 0.3s ease, filter var(--transition-fast);
+}
+
+.nav-content.is-collapsed .cloud-svg-bg {
+    height: 0;
+    opacity: 0;
+}
+
+.nav-content.is-collapsed:hover .cloud-svg-bg,
+.nav-content.is-collapsed:focus-within .cloud-svg-bg {
+    height: 48px;
+    opacity: 1;
 }
 
 .cloud-svg-bg path {
@@ -182,8 +248,17 @@ h2 {
     letter-spacing: 0.3px;
     white-space: nowrap;
     pointer-events: none;
-    transition: color var(--transition-fast);
+    transition: color var(--transition-fast), opacity 0.3s ease;
     transform: translateY(-1px);
+}
+
+.nav-content.is-collapsed .cloud-text {
+    opacity: 0;
+}
+
+.nav-content.is-collapsed:hover .cloud-text,
+.nav-content.is-collapsed:focus-within .cloud-text {
+    opacity: 1;
 }
 
 .cloud-link:hover .cloud-text {

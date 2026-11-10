@@ -7,12 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const tabList = document.querySelectorAll('[role="tab"]');
   const panels = document.querySelectorAll('[role="tabpanel"]');
 
-  // Initialize tab state based on hash
+  // Initialize tab state based on hash (only on pages with tabs)
   const init = () => {
+    if (!tabList.length) return;
     const hash = location.hash.slice(1) || 'books';
     const activeTab = document.getElementById(`tab-${hash}`);
     
-    if (activeTab && tabList.length) {
+    if (activeTab) {
       activateTab(hash);
     } else {
       activateTab('books');
@@ -82,4 +83,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize on load
   init();
+
+  // Scroll-aware navbar: collapse to a thin pill when scrolled down
+  const navContent = document.querySelector('.nav-content');
+  if (navContent) {
+    const collapseThreshold = 100;
+    let ticking = false;
+
+    const updateNav = () => {
+      const collapsed = window.scrollY > collapseThreshold;
+      navContent.classList.toggle('is-collapsed', collapsed);
+      const topNavbar = document.querySelector('.top-navbar');
+      if (topNavbar) topNavbar.classList.toggle('is-collapsed', collapsed);
+      ticking = false;
+    };
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(updateNav);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    updateNav();
+  }
 });
