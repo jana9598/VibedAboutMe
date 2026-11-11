@@ -107,4 +107,100 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updateNav();
   }
+
+  // Postcard drawing: brush, eraser and colour palette on a canvas
+  const initPostcardDrawing = () => {
+    const canvas = document.getElementById('postcard-canvas');
+    if (!canvas || !canvas.getContext) return;
+
+    const ctx = canvas.getContext('2d');
+    const toolButtons = document.querySelectorAll('.postcard-tool-group [data-tool]');
+    const swatches = document.querySelectorAll('.colour-swatch');
+    const brushButton = document.querySelector('[data-tool="brush"]');
+    const activeSwatch = document.querySelector('.colour-swatch.is-active');
+
+    if (!brushButton || !activeSwatch) return;
+
+    let tool = 'brush';
+    let isDrawing = false;
+    let lastX = 0;
+    let lastY = 0;
+    let colour = getComputedStyle(activeSwatch).backgroundColor;
+
+    const markActive = (buttons, selected) => {
+      buttons.forEach((button) => {
+        const isActive = button === selected;
+        button.classList.toggle('is-active', isActive);
+        button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      });
+    };
+
+    const getPosition = (event) => {
+      const bounds = canvas.getBoundingClientRect();
+      return {
+        x: (event.clientX - bounds.left) * (canvas.width / bounds.width),
+        y: (event.clientY - bounds.top) * (canvas.height / bounds.height),
+      };
+    };
+
+    const stroke = (from, to) => {
+      ctx.lineWidth = tool === 'eraser' ? 28 : 7;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.strokeStyle = colour;
+      ctx.globalCompositeOperation = tool === 'eraser' ? 'destination-out' : 'source-over';
+      ctx.beginPath();
+      ctx.moveTo(from.x, from.y);
+      ctx.lineTo(to.x, to.y);
+      ctx.stroke();
+    };
+
+    const startDrawing = (event) => {
+      event.preventDefault();
+      isDrawing = true;
+      const position = getPosition(event);
+      lastX = position.x;
+      lastY = position.y;
+      stroke(position, position);
+    };
+
+    const draw = (event) => {
+      if (!isDrawing) return;
+      const position = getPosition(event);
+      stroke({ x: lastX, y: lastY }, position);
+      lastX = position.x;
+      lastY = position.y;
+    };
+
+    const stopDrawing = () => {
+      isDrawing = false;
+    };
+
+    toolButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        tool = button.dataset.tool;
+        markActive(toolButtons, button);
+      });
+    });
+
+    swatches.forEach((swatch) => {
+      swatch.addEventListener('click', () => {
+        colour = getComputedStyle(swatch).backgroundColor;
+        markActive(swatches, swatch);
+
+        if (tool === 'eraser') {
+          tool = 'brush';
+          markActive(toolButtons, brushButton);
+        }
+      });
+    });
+
+    canvas.addEventListener('pointerdown', startDrawing);
+    canvas.addEventListener('pointermove', draw);
+    canvas.addEventListener('pointerup', stopDrawing);
+    canvas.addEventListener('pointerleave', stopDrawing);
+    canvas.addEventListener('pointercancel', stopDrawing);
+  };
+
+  initPostcardDrawing();
 });

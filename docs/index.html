@@ -171,10 +171,32 @@
 
     </main>
 
-    <!-- Footer -->
-    <footer>
-        <p>For inquiry 💌, please send a postcard 📮.</p>
-    </footer>
+    <!-- Postcard drawing -->
+    <section id="postcard-drawing" class="postcard-section container" aria-labelledby="postcard-heading">
+        <h2 id="postcard-heading">For inquiry 💌, please send a postcard 📮.</h2>
+
+        <div class="postcard-card card">
+            <div class="postcard-canvas-wrap">
+                <canvas id="postcard-canvas" class="postcard-canvas" width="600" height="450" role="img" aria-label="Blank postcard drawing area"></canvas>
+            </div>
+
+            <div class="postcard-tools">
+                <div class="postcard-tool-group" role="group" aria-label="Drawing tools">
+                    <button type="button" class="tool-btn is-active" data-tool="brush" aria-pressed="true"><span aria-hidden="true">🖌️</span> Brush</button>
+                    <button type="button" class="tool-btn" data-tool="eraser" aria-pressed="false"><span aria-hidden="true">🧽</span> Eraser</button>
+                </div>
+
+                <div class="colour-palette" role="group" aria-label="Colour palette">
+                    <button type="button" class="colour-swatch swatch-pink is-active" aria-pressed="true" aria-label="Pink"></button>
+                    <button type="button" class="colour-swatch swatch-yellow" aria-pressed="false" aria-label="Yellow"></button>
+                    <button type="button" class="colour-swatch swatch-purple" aria-pressed="false" aria-label="Purple"></button>
+                    <button type="button" class="colour-swatch swatch-teal" aria-pressed="false" aria-label="Teal"></button>
+                    <button type="button" class="colour-swatch swatch-amber" aria-pressed="false" aria-label="Amber"></button>
+                    <button type="button" class="colour-swatch swatch-charcoal" aria-pressed="false" aria-label="Charcoal"></button>
+                </div>
+            </div>
+        </div>
+    </section>
 
 </body>
 </html>
