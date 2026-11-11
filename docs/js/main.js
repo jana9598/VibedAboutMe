@@ -118,6 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const swatches = document.querySelectorAll('.colour-swatch');
     const brushButton = document.querySelector('[data-tool="brush"]');
     const activeSwatch = document.querySelector('.colour-swatch.is-active');
+    const clearButton = document.getElementById('clear-canvas');
 
     if (!brushButton || !activeSwatch) return;
 
@@ -179,6 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
     toolButtons.forEach((button) => {
       button.addEventListener('click', () => {
         tool = button.dataset.tool;
+        canvas.dataset.tool = tool;
         markActive(toolButtons, button);
       });
     });
@@ -190,10 +192,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (tool === 'eraser') {
           tool = 'brush';
+          canvas.dataset.tool = tool;
           markActive(toolButtons, brushButton);
         }
       });
     });
+
+    if (clearButton) {
+      clearButton.addEventListener('click', () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      });
+    }
 
     canvas.addEventListener('pointerdown', startDrawing);
     canvas.addEventListener('pointermove', draw);

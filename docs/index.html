@@ -177,7 +177,7 @@
 
         <div class="postcard-card card">
             <div class="postcard-canvas-wrap">
-                <canvas id="postcard-canvas" class="postcard-canvas" width="600" height="450" role="img" aria-label="Blank postcard drawing area"></canvas>
+                <canvas id="postcard-canvas" class="postcard-canvas" data-tool="brush" width="600" height="450" role="img" aria-label="Blank postcard drawing area"></canvas>
             </div>
 
             <div class="postcard-tools">
@@ -194,6 +194,8 @@
                     <button type="button" class="colour-swatch swatch-amber" aria-pressed="false" aria-label="Amber"></button>
                     <button type="button" class="colour-swatch swatch-charcoal" aria-pressed="false" aria-label="Charcoal"></button>
                 </div>
+
+                <button type="button" class="tool-btn clear-btn" id="clear-canvas"><span aria-hidden="true">🗑️</span> Clear</button>
             </div>
         </div>
     </section>

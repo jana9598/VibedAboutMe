@@ -908,9 +908,16 @@ footer {
     border: 1px solid var(--border-color);
     border-radius: var(--radius-card);
     box-shadow: inset 0 0 0 6px var(--accent-soft);
-    cursor: crosshair;
     touch-action: none;
     user-select: none;
+}
+
+.postcard-canvas[data-tool="brush"] {
+    cursor: url("../images/cursor-brush.svg") 6 26, crosshair;
+}
+
+.postcard-canvas[data-tool="eraser"] {
+    cursor: url("../images/cursor-eraser.svg") 16 16, crosshair;
 }
 
 .postcard-tools {
