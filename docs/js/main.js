@@ -212,4 +212,147 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   initPostcardDrawing();
+  // Memory game: flip cards and match pairs
+  const initMemoryGame = () => {
+    const board = document.querySelector('.memory-grid');
+    const movesDisplay = document.getElementById('memory-moves');
+    const pairsDisplay = document.getElementById('memory-pairs');
+    const statusDisplay = document.getElementById('memory-status');
+    const restartButton = document.getElementById('memory-restart');
+
+    if (!board || !movesDisplay || !pairsDisplay || !statusDisplay || !restartButton) return;
+
+    const symbols = [
+      { icon: '🍎', name: 'apple' },
+      { icon: '🍋', name: 'lemon' },
+      { icon: '🍇', name: 'grapes' },
+      { icon: '🍓', name: 'strawberry' },
+      { icon: '🐱', name: 'cat' },
+      { icon: '🐶', name: 'dog' },
+    ];
+
+    const totalPairs = symbols.length;
+    let firstCard = null;
+    let secondCard = null;
+    let lockBoard = false;
+    let moves = 0;
+    let matchedPairs = 0;
+    let turnId = 0;
+
+    const shuffle = (items) => {
+      const copy = [...items];
+      for (let i = copy.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    };
+
+    const updateStats = () => {
+      movesDisplay.textContent = moves;
+      pairsDisplay.textContent = matchedPairs;
+    };
+
+    const announce = (message, kind) => {
+      statusDisplay.textContent = message;
+      statusDisplay.className = 'memory-status' + (kind ? ' is-' + kind : '');
+    };
+
+    const resetTurn = () => {
+      firstCard = null;
+      secondCard = null;
+      lockBoard = false;
+    };
+
+    const flipCard = (card) => {
+      if (lockBoard || card.disabled || card === firstCard) return;
+
+      card.classList.add('is-flipped');
+      card.setAttribute('aria-label', `Card ${card.dataset.position}, ${card.dataset.name}`);
+
+      if (!firstCard) {
+        firstCard = card;
+        return;
+      }
+
+      secondCard = card;
+      moves += 1;
+      updateStats();
+
+      if (firstCard.dataset.name === secondCard.dataset.name) {
+        firstCard.classList.add('is-matched');
+        secondCard.classList.add('is-matched');
+        firstCard.disabled = true;
+        secondCard.disabled = true;
+        matchedPairs += 1;
+        updateStats();
+        resetTurn();
+
+        if (matchedPairs === totalPairs) {
+          announce(`You found all ${totalPairs} pairs in ${moves} moves! 🎉`, 'success');
+        } else {
+          announce(`Match found: ${card.dataset.name}.`, null);
+        }
+      } else {
+        lockBoard = true;
+        const currentTurn = turnId;
+        announce('No match. Try again.', null);
+
+        setTimeout(() => {
+          if (currentTurn !== turnId) return;
+          firstCard.classList.remove('is-flipped');
+          secondCard.classList.remove('is-flipped');
+          firstCard.setAttribute('aria-label', `Card ${firstCard.dataset.position}`);
+          secondCard.setAttribute('aria-label', `Card ${secondCard.dataset.position}`);
+          resetTurn();
+        }, 900);
+      }
+    };
+
+    const buildBoard = () => {
+      const deck = shuffle(symbols.flatMap((symbol) => [symbol, symbol]));
+      board.textContent = '';
+
+      deck.forEach((symbol, index) => {
+        const item = document.createElement('li');
+        const card = document.createElement('button');
+        const front = document.createElement('span');
+        const back = document.createElement('span');
+
+        card.type = 'button';
+        card.className = 'memory-card';
+        card.dataset.position = index + 1;
+        card.dataset.name = symbol.name;
+        card.setAttribute('aria-label', `Card ${index + 1}`);
+
+        front.className = 'memory-face memory-front';
+        front.setAttribute('aria-hidden', 'true');
+        front.textContent = '?';
+
+        back.className = 'memory-face memory-back';
+        back.setAttribute('aria-hidden', 'true');
+        back.textContent = symbol.icon;
+
+        card.append(front, back);
+        card.addEventListener('click', () => flipCard(card));
+        item.append(card);
+        board.append(item);
+      });
+    };
+
+    restartButton.addEventListener('click', () => {
+      turnId += 1;
+      resetTurn();
+      moves = 0;
+      matchedPairs = 0;
+      updateStats();
+      announce('', null);
+      buildBoard();
+    });
+
+    buildBoard();
+    updateStats();
+  };
+
+  initMemoryGame();
 });

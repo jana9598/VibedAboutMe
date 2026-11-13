@@ -1010,3 +1010,121 @@ footer {
         justify-content: center;
     }
 }
+
+/* Memory game */
+
+.memory-section {
+    width: 100%;
+    scroll-margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.memory-status-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    width: 100%;
+    max-width: 480px;
+    margin-bottom: var(--space-md);
+}
+
+.memory-stats {
+    display: flex;
+    gap: var(--space-md);
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.memory-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-sm);
+    width: 100%;
+    max-width: 480px;
+    list-style: none;
+}
+
+.memory-card {
+    display: block;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    perspective: 800px;
+    font-family: inherit;
+}
+
+.memory-face {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-card);
+    backface-visibility: hidden;
+    transition: transform 0.4s ease;
+    font-size: clamp(1.6rem, 8vw, 2.4rem);
+}
+
+.memory-front {
+    background: var(--accent-soft);
+    color: var(--accent-strong);
+    box-shadow: var(--shadow-subtle);
+}
+
+.memory-back {
+    background: var(--card-bg);
+    transform: rotateY(180deg);
+}
+
+.memory-card.is-flipped .memory-front {
+    transform: rotateY(180deg);
+}
+
+.memory-card.is-flipped .memory-back {
+    transform: rotateY(360deg);
+}
+
+.memory-card.is-matched .memory-back {
+    background: var(--accent-purple-bg);
+    border-color: var(--accent-purple);
+}
+
+.memory-card:disabled {
+    cursor: default;
+}
+
+.memory-card:focus-visible {
+    outline: 2px solid var(--accent-strong);
+    outline-offset: 2px;
+}
+
+.memory-status {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-top: var(--space-md);
+    min-height: 1.2em;
+}
+
+.memory-status.is-success {
+    color: var(--accent-strong);
+    font-weight: 600;
+}
+
+@media (max-width: 620px) {
+    .memory-grid {
+        gap: 8px;
+    }
+
+    .memory-status-bar {
+        flex-direction: column;
+        gap: var(--space-sm);
+    }
+}
