@@ -186,85 +186,54 @@ h2 {
     justify-content: center;
     gap: var(--space-md);
     list-style: none;
+    max-height: 60px;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
 }
 
-/* SVG Cloud Navigation Item Container */
-.cloud-link {
-    position: relative;
+/* Collapse the nav items when the bar is collapsed */
+.nav-content.is-collapsed .nav-items {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+}
+
+.nav-content.is-collapsed:hover .nav-items,
+.nav-content.is-collapsed:focus-within .nav-items {
+    max-height: 60px;
+    opacity: 1;
+}
+
+/* Gradient pill navigation item */
+.nav-pill {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    transition: transform var(--transition-fast), filter var(--transition-fast);
-    cursor: pointer;
-}
-
-.cloud-link.is-active .cloud-svg-bg path {
-    fill: var(--accent-soft);
-}
-
-.cloud-link.is-active .cloud-text {
-    color: var(--accent-strong);
-    font-weight: 500;
-}
-
-.cloud-link:hover {
-    transform: translateY(-2px);
-    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
-}
-
-/* Pure SVG Cloud background shape */
-.cloud-svg-bg {
-    height: 48px;
-    width: auto;
-    min-width: 120px;
-    transition: height 0.3s ease, opacity 0.3s ease, filter var(--transition-fast);
-}
-
-.nav-content.is-collapsed .cloud-svg-bg {
-    height: 0;
-    opacity: 0;
-}
-
-.nav-content.is-collapsed:hover .cloud-svg-bg,
-.nav-content.is-collapsed:focus-within .cloud-svg-bg {
-    height: 48px;
-    opacity: 1;
-}
-
-.cloud-svg-bg path {
-    fill: var(--card-bg);
-    stroke-width: 3;
-    stroke-linejoin: round;
-}
-
-/* Clean font label over the Cloud */
-.cloud-text {
-    position: absolute;
+    gap: 6px;
+    padding: 8px 18px;
+    border: 2px solid transparent;
+    border-radius: var(--radius-pill);
+    background:
+        linear-gradient(var(--card-bg), var(--card-bg)) padding-box,
+        var(--rainbow-gradient) border-box;
+    color: var(--text-charcoal);
     font-family: inherit;
     font-size: 0.9rem;
-    font-weight: 400;
-    color: var(--text-charcoal);
-    letter-spacing: 0.3px;
-    white-space: nowrap;
-    pointer-events: none;
-    transition: color var(--transition-fast), opacity 0.3s ease;
-    transform: translateY(-1px);
+    font-weight: 500;
+    text-decoration: none;
+    box-shadow: var(--shadow-subtle);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-.nav-content.is-collapsed .cloud-text {
-    opacity: 0;
+.nav-pill:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
 }
 
-.nav-content.is-collapsed:hover .cloud-text,
-.nav-content.is-collapsed:focus-within .cloud-text {
-    opacity: 1;
+.nav-pill.is-active {
+    background:
+        linear-gradient(var(--accent-soft), var(--accent-soft)) padding-box,
+        var(--rainbow-gradient) border-box;
+    color: var(--accent-strong);
 }
-
-.cloud-link:hover .cloud-text {
-    color: var(--accent-hover);
-}
-
 
 /* Container limits the body width */
 .container {
@@ -538,11 +507,6 @@ footer {
 @media (max-width: 620px) {
     .nav-items {
         gap: var(--space-sm);
-    }
-
-    .cloud-svg-bg {
-        height: 40px;
-        min-width: 100px;
     }
 
     .books-grid {
