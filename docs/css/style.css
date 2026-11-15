@@ -1055,8 +1055,11 @@ footer {
     }
 
     .trading-card {
+        flex: 0 0 auto;
+        min-height: 0;
         width: 100%;
         max-width: 280px;
+        aspect-ratio: 3 / 5;
     }
 }
 
