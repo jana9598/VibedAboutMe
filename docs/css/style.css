@@ -1016,10 +1016,6 @@ footer {
     --team-colour: var(--team-bears);
 }
 
-.team-card--bears .team-logo {
-    border: 2px solid var(--team-black);
-}
-
 .team-logo {
     flex: 0 0 64px;
     width: 64px;
