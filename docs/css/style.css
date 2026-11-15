@@ -1061,6 +1061,10 @@ footer {
         max-width: 280px;
         aspect-ratio: 3 / 5;
     }
+
+    .trading-card-photo {
+        height: 330px;
+    }
 }
 
 /* Utilities */
