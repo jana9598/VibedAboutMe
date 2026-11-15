@@ -53,6 +53,13 @@
     --section-music-soft: #e9f6f4;
     --section-recipes: #b06f1a;
     --section-recipes-soft: #fff6e5;
+
+    /* Sport team colours */
+    --team-own: #b3001b;
+    --team-black: #1a1a1a;
+    --team-own-soft: #fdecef;
+    --team-hsv: #0a4d8c;
+    --team-bears: #c83803;
 }
 
 /* Reset */
@@ -837,6 +844,214 @@ footer {
     color: var(--text-color);
     line-height: 1.35;
     margin-top: 2px;
+}
+
+/* Sport section */
+
+.sport-section {
+    width: 100%;
+    scroll-margin-top: 80px;
+}
+
+.sport-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: var(--space-lg);
+    align-items: start;
+    width: 100%;
+}
+
+/* Trading card */
+
+.trading-card {
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: inherit;
+    font-family: inherit;
+    cursor: pointer;
+    aspect-ratio: 3 / 4;
+    perspective: 1000px;
+}
+
+.trading-card-inner {
+    position: absolute;
+    inset: 0;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+}
+
+.trading-card:hover .trading-card-inner,
+.trading-card.is-flipped .trading-card-inner {
+    transform: rotateY(180deg);
+}
+
+.trading-card-face {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-subtle);
+    backface-visibility: hidden;
+    text-align: center;
+}
+
+.trading-card-front {
+    background: linear-gradient(180deg, var(--team-own-soft), var(--card-bg));
+    border: 2px solid var(--team-own);
+}
+
+.trading-card-photo {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-card);
+    background: linear-gradient(140deg, var(--team-own), var(--team-black));
+    color: var(--card-bg);
+    font-size: 3rem;
+}
+
+.trading-card-name {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.trading-card-detail {
+    font-size: 0.92rem;
+    color: var(--text-charcoal);
+}
+
+.trading-card-club {
+    color: var(--team-own);
+    font-weight: 600;
+}
+
+.trading-card-back {
+    background: var(--team-black);
+    border-color: var(--team-black);
+    transform: rotateY(180deg);
+}
+
+.trading-card-heading {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--card-bg);
+}
+
+.trading-card-text {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--accent-soft);
+}
+
+.trading-card:focus-visible {
+    outline: 2px solid var(--accent-strong);
+    outline-offset: 3px;
+    border-radius: var(--radius-card);
+}
+
+/* Favourite teams */
+
+.favourite-teams {
+    width: 100%;
+    text-align: left;
+}
+
+.favourite-teams h3 {
+    font-size: 1.05rem;
+    color: var(--primary-color);
+    margin-bottom: var(--space-md);
+}
+
+.team-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    width: 100%;
+    list-style: none;
+}
+
+.team-card {
+    --team-colour: var(--accent-color);
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    border-left: 4px solid var(--team-colour);
+    text-align: left;
+}
+
+.team-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+}
+
+.team-card--hsv {
+    --team-colour: var(--team-hsv);
+}
+
+.team-card--bears {
+    --team-colour: var(--team-bears);
+}
+
+.team-card--bears .team-logo {
+    border: 2px solid var(--team-black);
+}
+
+.team-logo {
+    flex: 0 0 64px;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-card);
+    background: var(--team-colour);
+    color: var(--card-bg);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.team-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.team-name {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.team-league {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+@media (max-width: 620px) {
+    .sport-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .trading-card {
+        max-width: 280px;
+    }
 }
 
 /* Utilities */

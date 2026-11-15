@@ -355,4 +355,17 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   initMemoryGame();
+
+  // Trading card: flip on click (hover flips via CSS)
+  const initTradingCard = () => {
+    const card = document.querySelector('.trading-card');
+    if (!card) return;
+
+    card.addEventListener('click', () => {
+      const flipped = card.classList.toggle('is-flipped');
+      card.setAttribute('aria-pressed', flipped ? 'true' : 'false');
+    });
+  };
+
+  initTradingCard();
 });
