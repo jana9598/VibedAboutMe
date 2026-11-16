@@ -1048,11 +1048,15 @@ footer {
     align-items: center;
     justify-content: center;
     border-radius: var(--radius-card);
-    background: var(--team-colour);
-    color: var(--card-bg);
-    font-size: 0.95rem;
-    font-weight: 700;
-    letter-spacing: 0.5px;
+    background: transparent;
+    padding: 8px;
+}
+
+.team-logo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 .team-info {
