@@ -1028,10 +1028,12 @@ footer {
     border-radius: var(--radius-card);
     box-shadow: var(--shadow-subtle);
     backface-visibility: hidden;
+    isolation: isolate;
     text-align: center;
 }
 
 .trading-card-front {
+    z-index: 1;
     border-color: var(--team-own);
     background: linear-gradient(180deg, var(--team-own-soft), var(--card-bg));
 }
@@ -1087,6 +1089,7 @@ footer {
 }
 
 .trading-card-back {
+    z-index: 2;
     background: linear-gradient(140deg, var(--team-own), var(--team-black));
     border-color: var(--team-black);
     transform: rotateY(180deg);
