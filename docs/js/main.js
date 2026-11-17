@@ -4,6 +4,50 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Theme switcher: keep the choice across the static site's pages.
+  const initThemeSwitcher = () => {
+    const buttons = document.querySelectorAll('.theme-button[data-theme]');
+    if (!buttons.length) return;
+
+    const validThemes = ['rainbow', 'night', 'garden'];
+    let savedTheme = 'rainbow';
+
+    try {
+      const storedTheme = localStorage.getItem('jana-theme');
+      if (validThemes.includes(storedTheme)) savedTheme = storedTheme;
+    } catch (error) {
+      savedTheme = 'rainbow';
+    }
+
+    const applyTheme = (theme) => {
+      if (!validThemes.includes(theme)) return;
+
+      document.documentElement.dataset.theme = theme;
+      buttons.forEach((button) => {
+        const isActive = button.dataset.theme === theme;
+        button.classList.toggle('is-active', isActive);
+        button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      });
+    };
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const theme = button.dataset.theme;
+        applyTheme(theme);
+
+        try {
+          localStorage.setItem('jana-theme', theme);
+        } catch (error) {
+          // The theme still applies for this page when storage is unavailable.
+        }
+      });
+    });
+
+    applyTheme(savedTheme);
+  };
+
+  initThemeSwitcher();
+
   const tabList = document.querySelectorAll('[role="tab"]');
   const panels = document.querySelectorAll('[role="tabpanel"]');
 

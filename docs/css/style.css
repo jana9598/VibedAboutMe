@@ -62,6 +62,72 @@
     --team-bears: #c83803;
 }
 
+/* Theme overrides */
+
+:root[data-theme="night"] {
+    --primary-color: #f7edc8;
+    --accent-color: #f4c95d;
+    --accent-strong: #f1bd3f;
+    --accent-soft: #2a355b;
+    --accent-border: #58658b;
+    --accent-purple: #c9b8ff;
+    --accent-purple-bg: #30305b;
+    --accent-purple-border: #6f6a9c;
+    --accent-hover: #ffe28c;
+    --text-charcoal: #f5efd8;
+    --star-color: #f4c95d;
+    --bg-color: #111a36;
+    --card-bg: #1d294b;
+    --border-color: #3d4b70;
+    --text-color: #e9e7dc;
+    --text-muted: #c0c5d5;
+    --bg-overlay: rgba(29, 41, 75, 0.82);
+    --shadow-subtle: 0 4px 15px rgba(2, 7, 24, 0.35);
+    --shadow-hover: 0 8px 25px rgba(2, 7, 24, 0.55);
+    --rainbow-gradient: linear-gradient(90deg, #f4c95d, #f6df9a, #9fb6e8, #c9b8ff, #f4c95d);
+    --section-books: #f29ab8;
+    --section-books-soft: #432d4b;
+    --section-movies: #c9b8ff;
+    --section-movies-soft: #30305b;
+    --section-music: #8ed3c9;
+    --section-music-soft: #1e454d;
+    --section-recipes: #f0ad57;
+    --section-recipes-soft: #493723;
+    --team-own-soft: #4a2638;
+}
+
+:root[data-theme="garden"] {
+    --primary-color: #243f31;
+    --accent-color: #6d9b70;
+    --accent-strong: #356643;
+    --accent-soft: #e0eedc;
+    --accent-border: #b6d2b2;
+    --accent-purple: #65704b;
+    --accent-purple-bg: #edf2df;
+    --accent-purple-border: #cbd6ad;
+    --accent-hover: #264f34;
+    --text-charcoal: #304c38;
+    --star-color: #c47632;
+    --bg-color: #e3eedf;
+    --card-bg: #f8fbf2;
+    --border-color: #b9cfb4;
+    --text-color: #3f5545;
+    --text-muted: #5d7461;
+    --bg-overlay: rgba(248, 251, 242, 0.82);
+    --shadow-subtle: 0 4px 15px rgba(53, 102, 67, 0.12);
+    --shadow-hover: 0 8px 25px rgba(53, 102, 67, 0.22);
+    --rainbow-gradient: linear-gradient(90deg, #6d9b70, #d39a55, #a9c78f, #8b6a45, #6d9b70);
+    --section-books: #c47772;
+    --section-books-soft: #f5e4dc;
+    --section-movies: #65704b;
+    --section-movies-soft: #edf2df;
+    --section-music: #3f8060;
+    --section-music-soft: #deeee3;
+    --section-recipes: #b86f2d;
+    --section-recipes-soft: #faeddc;
+    --team-own-soft: #f5e1d8;
+}
+
 /* Reset */
 
 * {
@@ -240,6 +306,58 @@ h2 {
         linear-gradient(var(--accent-soft), var(--accent-soft)) padding-box,
         var(--rainbow-gradient) border-box;
     color: var(--accent-strong);
+}
+
+/* Theme switcher (intentionally non-sticky and below the main navbar) */
+
+.theme-switcher {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    padding: 0 var(--space-md);
+    margin-top: var(--space-sm);
+}
+
+.theme-switcher-label {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.theme-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 11px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-pill);
+    background: var(--card-bg);
+    color: var(--text-charcoal);
+    font-family: inherit;
+    font-size: 0.82rem;
+    cursor: pointer;
+    box-shadow: var(--shadow-subtle);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+}
+
+.theme-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+.theme-button.is-active {
+    background: var(--accent-soft);
+    border-color: var(--accent-strong);
+    color: var(--accent-strong);
+    font-weight: 600;
+}
+
+.theme-button:focus-visible {
+    outline: 2px solid var(--accent-strong);
+    outline-offset: 2px;
 }
 
 /* Container limits the body width */
@@ -514,6 +632,14 @@ footer {
 @media (max-width: 620px) {
     .nav-items {
         gap: var(--space-sm);
+    }
+
+    .theme-switcher {
+        gap: 6px;
+    }
+
+    .theme-button {
+        padding: 5px 9px;
     }
 
     .books-grid {
