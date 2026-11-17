@@ -97,26 +97,26 @@
 }
 
 :root[data-theme="garden"] {
-    --primary-color: #243f31;
-    --accent-color: #6d9b70;
-    --accent-strong: #356643;
-    --accent-soft: #e0eedc;
-    --accent-border: #b6d2b2;
+    --primary-color: #18351f;
+    --accent-color: #4c7f4e;
+    --accent-strong: #1e542b;
+    --accent-soft: #dcebcf;
+    --accent-border: #78a65f;
     --accent-purple: #65704b;
     --accent-purple-bg: #edf2df;
     --accent-purple-border: #cbd6ad;
-    --accent-hover: #264f34;
-    --text-charcoal: #304c38;
+    --accent-hover: #173f23;
+    --text-charcoal: #1e3d25;
     --star-color: #c47632;
-    --bg-color: #e3eedf;
+    --bg-color: #90be6d;
     --card-bg: #f8fbf2;
-    --border-color: #b9cfb4;
-    --text-color: #3f5545;
-    --text-muted: #5d7461;
-    --bg-overlay: rgba(248, 251, 242, 0.82);
+    --border-color: #5f914f;
+    --text-color: #25462c;
+    --text-muted: #315a38;
+    --bg-overlay: rgba(248, 251, 242, 0.9);
     --shadow-subtle: 0 4px 15px rgba(53, 102, 67, 0.12);
     --shadow-hover: 0 8px 25px rgba(53, 102, 67, 0.22);
-    --rainbow-gradient: linear-gradient(90deg, #6d9b70, #d39a55, #a9c78f, #8b6a45, #6d9b70);
+    --rainbow-gradient: linear-gradient(90deg, #4c7f4e, #d39a55, #a9c78f, #8b6a45, #4c7f4e);
     --section-books: #c47772;
     --section-books-soft: #f5e4dc;
     --section-movies: #65704b;
