@@ -2,7 +2,7 @@
 
 name: explain-with-analogy
 
-description: Use when asked to explain how code works, especially for a beginner.
+description: Use every time, the user needs an Explanation for something.
 
 \---
 
@@ -39,6 +39,4 @@ Explain one limitation of the analogy.
 Keep the explanation short and suitable for a beginner.
 
 Do not change any files.
-
-
 
