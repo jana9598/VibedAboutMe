@@ -33,10 +33,13 @@
     --radius-card: 16px;
     --radius-pill: 999px;
     --space-sm: 0.5rem;
+    --space-2xs: 0.125rem;
     --space-md: 1rem;
     --space-lg: 2rem;
     --space-xl: 2.5rem;
     --transition-fast: 0.2s ease;
+    --content-max-width: 1080px;
+    --sidebar-width: 235px;
 
     /* Navbar */
     --z-navbar: 1000;
@@ -363,10 +366,10 @@ h2 {
 /* Container limits the body width */
 .container {
     width: 100%;
-    max-width: 680px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    max-width: var(--content-max-width);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
     text-align: center;
     gap: var(--space-xl);
     padding: var(--space-lg) var(--space-md) 0 var(--space-md);
@@ -379,6 +382,81 @@ header {
     align-items: center;
     gap: 12px;
     margin-top: 10px;
+}
+
+.page-header {
+    width: 100%;
+    grid-column: 1 / -1;
+    padding: var(--space-lg) var(--space-md) var(--space-md);
+    text-align: center;
+}
+
+.page-kicker,
+.profile-label {
+    color: var(--accent-strong);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.page-kicker {
+    margin-bottom: var(--space-sm);
+}
+
+.page-header h1 {
+    font-size: clamp(2.3rem, 6vw, 4rem);
+    line-height: 1.1;
+}
+
+.page-header .tagline {
+    max-width: 720px;
+}
+
+/* Homepage profile panel */
+.profile-panel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    text-align: left;
+    align-self: stretch;
+}
+
+.profile-intro {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.profile-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+    padding-top: var(--space-sm);
+    border-top: 1px dashed var(--border-color);
+}
+
+.profile-links a {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-sm);
+    padding: var(--space-sm) 0;
+    color: var(--text-charcoal);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+}
+
+.profile-links a:hover {
+    color: var(--accent-strong);
+    border-bottom-color: var(--accent-border);
+}
+
+.profile-links a:focus-visible {
+    outline: 2px solid var(--accent-strong);
+    outline-offset: 3px;
 }
 
 .tagline {
@@ -419,6 +497,35 @@ footer {
 .bio-section {
     width: 100%;
     scroll-margin-top: 80px;
+}
+
+@media (min-width: 900px) {
+    .homepage {
+        grid-template-columns: minmax(190px, var(--sidebar-width)) minmax(0, 1fr);
+        text-align: left;
+    }
+
+    .homepage .bio-section {
+        grid-column: 2;
+    }
+
+    .homepage .travels-section {
+        grid-column: 1 / -1;
+    }
+
+    .homepage .sport-section,
+    .homepage .library-section {
+        grid-column: 1 / -1;
+        min-width: 0;
+    }
+
+    .homepage .bio-card {
+        height: 100%;
+    }
+
+    .homepage .library-teasers {
+        align-items: stretch;
+    }
 }
 
 .bio-card {
@@ -1028,8 +1135,10 @@ footer {
     border-radius: var(--radius-card);
     box-shadow: var(--shadow-subtle);
     backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
     isolation: isolate;
     text-align: center;
+    transition: visibility 0s 0.3s;
 }
 
 .trading-card-front {
@@ -1093,6 +1202,17 @@ footer {
     background: linear-gradient(140deg, var(--team-own), var(--team-black));
     border-color: var(--team-black);
     transform: rotateY(180deg);
+    visibility: hidden;
+}
+
+.trading-card:hover .trading-card-front,
+.trading-card.is-flipped .trading-card-front {
+    visibility: hidden;
+}
+
+.trading-card:hover .trading-card-back,
+.trading-card.is-flipped .trading-card-back {
+    visibility: visible;
 }
 
 .trading-card-back-emblem {
@@ -1229,6 +1349,9 @@ footer {
 /* Postcard drawing section */
 
 .postcard-section {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
     gap: var(--space-md);
     scroll-margin-top: 80px;
 }
